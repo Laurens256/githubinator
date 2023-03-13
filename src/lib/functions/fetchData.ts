@@ -1,9 +1,9 @@
-const baseUrl = 'http://localhost:3000';
+import { PUBLIC_BASE_URL } from '$env/static/public';
 const authUrl = '/api/authorize';
 
 const fetchData = async (query: keyof typeof queries) => {
 	const data = await (
-		await fetch(baseUrl + authUrl, {
+		await fetch(PUBLIC_BASE_URL + authUrl, {
 			method: 'POST',
 			body: JSON.stringify({ query: queries[query] }),
 			headers: {
