@@ -30,6 +30,7 @@ export async function load({ params }) {
 
 	try {
 		const data = await client.request(query);
+		console.log(data);
 		return data;
 	} catch (error) {
 		console.log(error);
