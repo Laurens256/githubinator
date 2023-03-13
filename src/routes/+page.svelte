@@ -1,7 +1,6 @@
-<script>
-	// export let data;
-	// console.log(data);
-	console.log('test');
+<script lang="ts">
+	export let data;
+	console.log(data);
 </script>
 
 <h1>Welcome to SvelteKit</h1>

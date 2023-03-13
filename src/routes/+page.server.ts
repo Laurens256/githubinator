@@ -6,8 +6,8 @@ const api_uri = 'https://api.github.com/graphql';
 const load = async () => {
 	const client = new GraphQLClient(api_uri, {
 		headers: {
-			Authorization: `Bearer ${SECRET_GITHUB_TOKEN}`,
-			'Content-Type': 'application/json'
+			authorization: `Bearer ${SECRET_GITHUB_TOKEN}`,
+			'Content-Type': 'application/json',
 		}
 	});
 
@@ -27,10 +27,11 @@ const load = async () => {
 			}
 		}
 	`;
+	console.log(query);
 
 	try {
 		const data = await client.request(query);
-		console.log(data);
+
 		return await data;
 	} catch (error) {
 		console.log(error);
