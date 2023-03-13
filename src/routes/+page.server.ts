@@ -11,7 +11,7 @@ const load = async () => {
 		}
 	});
 
-	const query = gql`{ viewer { repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) { nodes { nameWithOwner } } repositories(first: 100, ownerAffiliations: [OWNER]) { nodes { nameWithOwner } } } }`;
+	const query = gql`query { viewer { repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) { nodes { nameWithOwner } } repositories(first: 100, ownerAffiliations: [OWNER]) { nodes { nameWithOwner } } } }`;
 	console.log(query);
 
 	try {
