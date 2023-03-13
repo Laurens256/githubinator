@@ -29,7 +29,8 @@ const load = async () => {
 	`;
 
 	try {
-		const data = await client.request(query);
+		// const data = await client.request(query);
+		const data = {};
 
 		return await data;
 	} catch (error) {
