@@ -3,9 +3,7 @@ import { SECRET_GITHUB_TOKEN } from '$env/static/private';
 
 const api_uri = 'https://api.github.com/graphql';
 
-console.log('pls');
 const load = async () => {
-	console.log('ja');
 	const client = new GraphQLClient(api_uri, {
 		headers: {
 			Authorization: `Bearer ${SECRET_GITHUB_TOKEN}`,
@@ -14,7 +12,7 @@ const load = async () => {
 	});
 
 	const query = gql`
-		{
+		query {
 			viewer {
 				repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) {
 					nodes {
