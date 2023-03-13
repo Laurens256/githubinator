@@ -33,5 +33,6 @@ export async function load({ params }) {
 		return data;
 	} catch (error) {
 		console.log(error);
+		return {};
 	}
 }
