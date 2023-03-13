@@ -1,8 +1,9 @@
+const baseUrl = 'http://localhost:3000';
 const authUrl = '/api/authorize';
 
 const fetchData = async (query: keyof typeof queries) => {
 	const data = await (
-		await fetch(authUrl, {
+		await fetch(baseUrl + authUrl, {
 			method: 'POST',
 			body: JSON.stringify({ query: queries[query] }),
 			headers: {
@@ -16,7 +17,14 @@ const fetchData = async (query: keyof typeof queries) => {
 
 const queries = {
 	contributedRepos:
-		'{viewer {repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) {nodes {nameWithOwner}}repositories(first: 100, ownerAffiliations: [OWNER]) {nodes {nameWithOwner}}}}'
+		'{viewer {repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) {nodes {nameWithOwner}}repositories(first: 100, ownerAffiliations: [OWNER]) {nodes {nameWithOwner}}}}',
+	usedLanguages:
+		'{ viewer { repositoriesContributedTo(last: 100, includeUserRepositories: true, contributionTypes: [COMMIT, PULL_REQUEST]) { nodes { name languages(first: 10) { edges { size node { name } } } } } } } ',
+	userProfile: '{ viewer { login name avatarUrl bio url } }'
 };
 
-export { fetchData };
+type QueriesUnion = keyof typeof queries;
+
+export { fetchData };	
+export type { QueriesUnion };
+

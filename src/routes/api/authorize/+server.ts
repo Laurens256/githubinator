@@ -5,7 +5,7 @@ const apiUrl = 'https://api.github.com/graphql';
 export async function POST({ request }: any) {
 	const query = await request.json();
 
-	const data: { data: {} } = (
+	const data: { data: { viewer: {} } } = (
 		await (
 			await fetch(apiUrl, {
 				method: 'POST',
@@ -16,7 +16,7 @@ export async function POST({ request }: any) {
 				body: JSON.stringify(query)
 			})
 		).json()
-	).data;
+	).data.viewer;
 
 	return new Response(JSON.stringify(data), {
 		status: 200,

@@ -5,3 +5,33 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+:root {
+	--primary-bg: #0d1117;
+	--secondary-bg: #161b22;
+
+	--primary-text: #c9d1d9;
+	--secondary-text: #8b949e;
+	--link-color: #58a6ff;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--primary-text);
+	background-color: var(--primary-bg);
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	text-decoration: underline;
+}
+
+button {
+	cursor: pointer;
+}

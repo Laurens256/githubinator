@@ -1,18 +1,9 @@
 <script lang="ts">
-	import { fetchData } from '$lib/functions/fetchData';
-	// export let data;
-	// console.log(data);
+	export let data;
 
-	const fetchRepositories = async () => {
-		const response = await fetchData('contributedRepos');
-
-		console.log(response);
-	};
+	const { userProfile, usedLanguages, contributedRepos } = data;
+	console.log(userProfile, usedLanguages, contributedRepos);
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<a href="/projecten">testlink</a>
-
-<button on:click={fetchRepositories}>get</button>
+<img src="{userProfile.avatarUrl}" alt="{userProfile.name} avatar">
+<p>{userProfile.login}</p>

@@ -1,42 +1,16 @@
-import { request, gql, GraphQLClient } from 'graphql-request';
-import { SECRET_GITHUB_TOKEN } from '$env/static/private';
-
-const api_uri = 'https://api.github.com/graphql';
+import { fetchData } from '$lib/functions/fetchData';
+import type { UserProfile, UsedLanguages, ContributedRepos } from '$lib/models';
 
 const load = async () => {
-	const client = new GraphQLClient(api_uri, {
-		headers: {
-			authorization: `Bearer ${SECRET_GITHUB_TOKEN}`,
-			'Content-Type': 'application/json'
-		}
-	});
+	const userProfile: UserProfile | Promise<UserProfile> = fetchData('userProfile');
+	const usedLanguages: UsedLanguages | Promise<UsedLanguages> = fetchData('usedLanguages');
+	const contributedRepos: ContributedRepos | Promise<ContributedRepos> = fetchData('contributedRepos')
 
-	const query = gql`
-		query {
-			viewer {
-				repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) {
-					nodes {
-						nameWithOwner
-					}
-				}
-				repositories(first: 100, ownerAffiliations: [OWNER]) {
-					nodes {
-						nameWithOwner
-					}
-				}
-			}
-		}
-	`;
-
-	try {
-		// const data = await client.request(query);
-		const data = {};
-
-		return await data;
-	} catch (error) {
-		console.log(error);
-		return {};
-	}
+	return {
+		userProfile,
+		usedLanguages,
+		contributedRepos
+	};
 };
 
 export { load };
