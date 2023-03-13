@@ -29,6 +29,7 @@ export async function load({ params }) {
 	`;
 
 	try {
+		console.log('before');
 		const data = await client.request(query);
 		console.log(data);
 		return data;
