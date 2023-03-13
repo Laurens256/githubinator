@@ -3,7 +3,8 @@ import { SECRET_GITHUB_TOKEN } from '$env/static/private';
 
 const api_uri = 'https://api.github.com/graphql';
 
-const load = async ({ params }: any) => {
+console.log('pls');
+const load = async () => {
 	console.log('ja');
 	const client = new GraphQLClient(api_uri, {
 		headers: {
