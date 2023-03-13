@@ -11,7 +11,6 @@ export async function load({ params }) {
 		}
 	});
 
-	console.log('before query');
 	const query = gql`
 		{
 			viewer {
@@ -30,7 +29,6 @@ export async function load({ params }) {
 	`;
 
 	try {
-		console.log('before');
 		const data = await client.request(query);
 		console.log(data);
 		return data;
