@@ -2,5 +2,10 @@
 	"github": {
 		"silent": true
 	},
-	"rewrites": [{ "source": "/(.*)", "destination": "/200.html" }]
+	"rewrites": [
+		{
+			"source": "/((?!api/.*).*)",
+			"destination": "/index.html"
+		}
+	]
 }
