@@ -7,12 +7,26 @@ const load = async () => {
 	const client = new GraphQLClient(api_uri, {
 		headers: {
 			authorization: `Bearer ${SECRET_GITHUB_TOKEN}`,
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 		}
 	});
 
-	const query = gql`query { viewer { repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) { nodes { nameWithOwner } } repositories(first: 100, ownerAffiliations: [OWNER]) { nodes { nameWithOwner } } } }`;
-	console.log(query);
+	const query = gql`
+		query {
+			viewer {
+				repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, PULL_REQUEST]) {
+					nodes {
+						nameWithOwner
+					}
+				}
+				repositories(first: 100, ownerAffiliations: [OWNER]) {
+					nodes {
+						nameWithOwner
+					}
+				}
+			}
+		}
+	`;
 
 	try {
 		const data = await client.request(query);
