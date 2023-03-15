@@ -1,4 +1,5 @@
 <script>
+	import { getCurrentUser } from './functions/currentUser';
 	const headings = [
 		{
 			name: 'Home',
@@ -18,15 +19,18 @@
 <header>
 	<ul>
 		<li>
-			<img src="/github-mark-white.svg" alt="github icon">
+			<img src="/github-mark-white.svg" alt="github icon" />
 		</li>
 		{#each headings as heading}
 			<li>
-				<a class="underline" href={heading.href}>{heading.name}</a>
+				<a class="underline" href="{heading.href}?user={getCurrentUser()}">{heading.name}</a>
 			</li>
 		{/each}
 		<li>
-			<img src="https://avatars.githubusercontent.com/u/85798751?v=4" alt="user avatar icon">
+			<img
+				src="https://avatars.githubusercontent.com/u/85798751?v=4"
+				alt="user avatar icon"
+			/>
 		</li>
 	</ul>
 </header>
@@ -54,7 +58,7 @@
 	header ul li {
 		text-align: center;
 	}
-	
+
 	header ul li:last-of-type {
 		margin-left: auto;
 	}
