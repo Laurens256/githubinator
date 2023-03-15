@@ -40,7 +40,7 @@
 							<li class="license"><span>⭐</span>{repo.license.name}</li>
 						{/if}
 						{#if repo.updated_at}
-							<li class="last-updatedr"><span />{getLastUpdate(repo.updated_at)}</li>
+							<li class="last-updated">Updated {getLastUpdate(repo.updated_at)}</li>
 						{/if}
 					</ul>
 				</a>
@@ -109,7 +109,7 @@
 		align-items: center;
 		gap: .3rem;
 	}
-	
+
 	main > ul li a > ul li.primary-language span {
 		background-color: var(--language-color, var(--primary-text));
 		display: inline-block;

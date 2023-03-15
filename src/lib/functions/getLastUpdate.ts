@@ -40,11 +40,11 @@ export const getLastUpdate = (lastUpdate: Date, exact = true) => {
 		default:
 			const yearDiff = currentDate.getFullYear() - lastUpdateDate.getFullYear();
 			return exact
-				? lastUpdateDate.toLocaleDateString('en-US', {
+				? `on ${lastUpdateDate.toLocaleDateString('en-US', {
 						month: 'short',
 						day: 'numeric',
 						year: 'numeric'
-				  })
+				  })}`
 				: `${yearDiff} year${yearDiff > 1 ? 's' : ''} ago`;
 	}
 };
