@@ -28,10 +28,44 @@ a {
 	text-decoration: none;
 }
 
-a:hover, a:focus {
+a:not(.underline):hover,
+a:not(.underline):focus {
 	text-decoration: underline;
+}
+
+a.underline {
+	text-decoration: none;
+	position: relative;
+}
+
+a.underline:hover::after,
+a.underline:focus-visible::after {
+	transform: scale(1) translateX(-50%);
+}
+
+a.underline:focus {
+	outline-offset: 4px;
+}
+
+a.underline::after {
+	content: '';
+	width: 100%;
+	max-width: 7em;
+	height: 2px;
+	background: currentColor;
+	transition: transform 0.25s;
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	transform: scale(0) translateX(-50%);
+	transform-origin: 0 50%;
 }
 
 button {
 	cursor: pointer;
+}
+
+ul,
+ol {
+	list-style: none;
 }
