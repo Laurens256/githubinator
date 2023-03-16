@@ -17,18 +17,6 @@
 			href: '/favorite-languages'
 		}
 	];
-
-	const getActiveLink = () => {
-		console.log($page);
-		const pathName = window.location.pathname.toLowerCase();
-
-		const headerLinks = document.querySelectorAll('header ul li a');
-		headerLinks.forEach((link) => link.classList.remove('active'));
-		const activeLink = document.querySelector(`a[href="${pathName}"]`);
-		activeLink?.classList.add('active');
-	};
-
-	// $: $page, getActiveLink();
 </script>
 
 <header>
