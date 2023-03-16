@@ -1,9 +1,36 @@
 <script lang="ts">
 	import { getLastUpdate } from '$lib/functions/getLastUpdate';
+	import { user } from '$lib/stores';
+	import type { Repo } from '$lib/models';
+	import type { LanguageColor } from '$lib/models';
 
-	export let data;
+	let repos: Repo[] = [];
+	let languageColors: LanguageColor = {};
+	const fetchRepos = async () => {
+		const repos: Repo[] = await (
+			await fetch(`https://api.github.com/users/${$user.login}/repos`)
+		).json();
 
-	const { repos, languageColors } = data;
+		return repos;
+	};
+
+	const fetchLanguageColors = async () => {
+		const languageColors: LanguageColor = await (
+			await fetch(
+				`https://raw.githubusercontent.com/ozh/github-colors/master/colors.json`
+			)
+		).json();
+
+		return languageColors;
+	};
+
+	const displayData = async () => {
+		if(!$user) return;
+		repos = await fetchRepos();
+		languageColors = await fetchLanguageColors();
+	};
+
+	$: $user, displayData();
 </script>
 
 <main>

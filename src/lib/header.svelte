@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_DEFAULT_USER } from '$env/static/public';
+	import { user } from '$lib/stores';
 	const headings = [
 		{
 			name: 'Home',
@@ -17,19 +18,25 @@
 </script>
 
 <header>
-		<ul>
+	<ul>
+		<li>
+			<img src="/github-mark-white.svg" alt="github icon" />
+		</li>
+		{#each headings as heading}
 			<li>
-				<img src="/github-mark-white.svg" alt="github icon" />
+				<a
+					class="underline"
+					href="/{$user ? $user.login : PUBLIC_DEFAULT_USER}{heading.href}"
+					>{heading.name}</a
+				>
 			</li>
-			{#each headings as heading}
-				<li>
-					<a class="underline" href="/{PUBLIC_DEFAULT_USER}{heading.href}">{heading.name}</a>
-				</li>
-			{/each}
-			<li>
-				<img src='https://avatars.githubusercontent.com/u/85798751?v=4' alt="{PUBLIC_DEFAULT_USER} avatar icon" />
-			</li>
-		</ul>
+		{/each}
+		<li>
+			{#if $user}
+				<img src={$user.avatar_url} alt="{$user.login} avatar icon" />
+			{/if}
+		</li>
+	</ul>
 </header>
 
 <style>

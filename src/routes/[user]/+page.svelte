@@ -1,7 +1,5 @@
 <script lang="ts">
-	export let data;
-
-	const { user } = data;
+	import { user } from '$lib/stores';
 
 	const emojis = ['😎', '🥸', '🤙', '💃', '🤼‍♂️', '💀'];
 	const getRandomEmoji = () => {
@@ -12,13 +10,17 @@
 <main>
 	<section>
 		<div>
-			<img src={user.avatar_url} alt="{user.name} icon" />
+			{#if $user}
+				<img src={$user.avatar_url} alt="{$user.login} avatar icon" />
+			{/if}
+
 			<div>
 				<span>{getRandomEmoji()}</span>
 			</div>
 		</div>
-		<!-- <h1>{user.name}</h1> -->
-		<h1>{user.login}</h1>
+		{#if $user}
+			<h1>{$user.login}</h1>
+		{/if}
 	</section>
 </main>
 
