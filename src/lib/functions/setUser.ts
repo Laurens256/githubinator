@@ -15,6 +15,11 @@ export const setUser = async (userName = PUBLIC_DEFAULT_USER) => {
 		userProfile = await (
 			await fetch(`https://api.github.com/users/${PUBLIC_DEFAULT_USER}`)
 		).json();
+
+		window.history.replaceState({}, '',  window.location.href.replace(userName, PUBLIC_DEFAULT_USER));
 	}
+
+	if (userProfile.message) return;
+
 	user.set(userProfile);
 };

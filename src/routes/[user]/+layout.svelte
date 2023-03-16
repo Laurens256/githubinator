@@ -1,22 +1,16 @@
 <script lang="ts">
-	import { user } from '$lib/stores';
+	import { loading } from '$lib/stores';
 	import { setUser } from '$lib/functions/setUser';
 	import { page } from '$app/stores';
-	import { navigating } from '$app/stores';
-	$: $page, userChanged();
 
-	let previousUserLogin = '';
-	const userChanged = async () => {
-		const userName = $page.params.user;
-		if (userName === previousUserLogin) return;
-		previousUserLogin = userName;
+	$: $page, setUser($page.params.user);
 
-		setUser(userName);
-	};
+	const bodyEl = document.querySelector('body')!;
+	$: $loading, bodyEl.style.overflow = $loading ? 'hidden' : 'auto';
 </script>
 
 <!-- loader -->
-{#if $navigating || !$user}
+{#if $loading}
 	<div>
 		<span />
 	</div>
@@ -25,6 +19,10 @@
 
 <!-- https://cssloaders.github.io/ -->
 <style>
+	:global(body) {
+		overflow: hidden;
+	}
+
 	div {
 		position: fixed;
 		inset: 5em 0 0 0;
