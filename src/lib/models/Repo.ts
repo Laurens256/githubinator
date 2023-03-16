@@ -27,7 +27,7 @@ export interface License {
 	node_id: string;
 }
 
-export interface Repo {
+export default interface Repo {
 	id: number;
 	node_id: string;
 	name: string;

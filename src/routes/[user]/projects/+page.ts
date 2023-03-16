@@ -1,13 +1,11 @@
-import type { Repo } from '$lib/models/Repo';
-import type { LanguageColor } from '$lib/models/LanguageColors';
-import { getCurrentUser } from '$lib/functions/currentUser';
+import { PUBLIC_DEFAULT_USER } from '$env/static/public';
+import type { Repo } from '$lib/models';
+import type { LanguageColor } from '$lib/models';
 
 export const load = async ({ fetch }) => {
-	const user = getCurrentUser();
-
 	const fetchRepos = async () => {
 		const repos: Repo[] = await (
-			await fetch(`https://api.github.com/users/${user}/repos`)
+			await fetch(`https://api.github.com/users/${PUBLIC_DEFAULT_USER}/repos`)
 		).json();
 
 		return repos;
@@ -28,3 +26,5 @@ export const load = async ({ fetch }) => {
 		languageColors: fetchLanguageColors()
 	};
 };
+
+export {};

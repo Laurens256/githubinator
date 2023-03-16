@@ -3,14 +3,11 @@ const apiUrl = 'https://api.github.com/';
 const fetchData = async (query: string) => {
 	let data;
 	try {
-		data = await fetch(`${apiUrl}/${query}`);
+		data = await (await fetch(`${apiUrl}${query}`)).json();
 	} catch (error) {
-		console.log(error);
+		return { err: error };
 	}
-
 	return data;
 };
 
-
-export { fetchData };	
-
+export { fetchData };

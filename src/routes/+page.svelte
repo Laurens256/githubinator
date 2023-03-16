@@ -1,14 +1,9 @@
 <script lang="ts">
-	export let data;
+	import { PUBLIC_DEFAULT_USER } from '$env/static/public';
+	import { goto } from '$app/navigation';
 
-	// const { userProfile, usedLanguages, contributedRepos } = data;
-	// console.log(userProfile, usedLanguages, contributedRepos);
+	goto(`/${PUBLIC_DEFAULT_USER}`, { replaceState: true });
 </script>
-
-<!-- <aside>
-	<img src={userProfile.avatarUrl} alt="{userProfile.name} avatar" />
-	<p>{userProfile.login}</p>
-</aside> -->
 
 <style>
 </style>

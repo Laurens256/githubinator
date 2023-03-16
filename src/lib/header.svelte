@@ -1,5 +1,5 @@
-<script>
-	import { getCurrentUser } from './functions/currentUser';
+<script lang="ts">
+	import { PUBLIC_DEFAULT_USER } from '$env/static/public';
 	const headings = [
 		{
 			name: 'Home',
@@ -17,22 +17,19 @@
 </script>
 
 <header>
-	<ul>
-		<li>
-			<img src="/github-mark-white.svg" alt="github icon" />
-		</li>
-		{#each headings as heading}
+		<ul>
 			<li>
-				<a class="underline" href="{heading.href}?user={getCurrentUser()}">{heading.name}</a>
+				<img src="/github-mark-white.svg" alt="github icon" />
 			</li>
-		{/each}
-		<li>
-			<img
-				src="https://avatars.githubusercontent.com/u/85798751?v=4"
-				alt="user avatar icon"
-			/>
-		</li>
-	</ul>
+			{#each headings as heading}
+				<li>
+					<a class="underline" href="/{PUBLIC_DEFAULT_USER}{heading.href}">{heading.name}</a>
+				</li>
+			{/each}
+			<li>
+				<img src='https://avatars.githubusercontent.com/u/85798751?v=4' alt="{PUBLIC_DEFAULT_USER} avatar icon" />
+			</li>
+		</ul>
 </header>
 
 <style>

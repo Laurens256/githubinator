@@ -1,4 +1,4 @@
-export interface UserProfile {
+export default interface UserProfile {
 	login: string;
 	id: number;
 	avatar_url: string;
@@ -13,4 +13,5 @@ export interface UserProfile {
 	following: number;
 	created_at: Date;
 	updated_at: Date;
+	message?: string; // dit is een extra property die alleen in de error response zit
 }

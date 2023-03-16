@@ -1,5 +1,5 @@
 import type UserProfile from './UserProfile';
-import type UsedLanguages from './UsedLanguages';
-import type ContributedRepos from './ContributedRepos';
+import type Repo from './Repo';
+import type LanguageColor from './LanguageColors';
 
-export { UserProfile, UsedLanguages, ContributedRepos }
+export { UserProfile, Repo, LanguageColor }
