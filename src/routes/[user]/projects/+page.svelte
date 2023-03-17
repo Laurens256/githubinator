@@ -27,6 +27,16 @@
 	const displayData = async () => {
 		if(!$user) return;
 		repos = await fetchRepos();
+		// repos = repos.sort((a, b) => {
+		// 	if (a.pushed_at > b.pushed_at) return -1;
+		// 	if (a.pushed_at < b.pushed_at) return 1;
+		// 	return 0;
+		// });
+		repos = repos.sort((a, b) => {
+			if (a.updated_at > b.updated_at) return -1;
+			if (a.updated_at < b.updated_at) return 1;
+			return 0;
+		});
 		languageColors = await fetchLanguageColors();
 	};
 
