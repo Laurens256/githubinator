@@ -5,7 +5,7 @@ import { get } from 'svelte/store';
 
 export const setUser = async (userName = PUBLIC_DEFAULT_USER) => {
 	// uitcommenten als ik niet meer geblokkeerd ben :(
-	return;
+	// return;
 	const currentUser = get(user);
 	if (currentUser && currentUser.login === userName) return;
 

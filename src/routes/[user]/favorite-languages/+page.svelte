@@ -4,12 +4,6 @@
 	import { onMount } from 'svelte';
 
 	let mainElement: HTMLElement;
-	let languagesWithColor: {
-		[key: string]: {
-			color: string;
-			amount: number;
-		};
-	} = {};
 	let languagesSorted: [string, number][] = [];
 
 	const fetchRepos = async () => {
@@ -19,24 +13,13 @@
 		return repos;
 	};
 
-	const fetchLanguageColors = async () => {
-		const languageColors: LanguageColor = await (
-			await fetch(
-				`https://raw.githubusercontent.com/ozh/github-colors/master/colors.json`
-			)
-		).json();
-		return languageColors;
-	};
-
 	const fetchLanguages = async () => {
 		const repos = await fetchRepos();
-		const languageColors = await fetchLanguageColors();
-		
+
 		const languagesTotal: Language = {};
 
 		// loop over repos
 		for (const repo of repos) {
-
 			// fetch languages per repo
 			const languagesPerRepo: Language = await (await fetch(repo.languages_url)).json();
 
@@ -48,12 +31,8 @@
 					languagesTotal[languagePerRepo] = languagesPerRepo[languagePerRepo];
 				}
 			}
-
-			for (const language in languagesTotal) {
-				console.log(language);
-			}
 		}
-		// return languagesTotal;
+
 		return Object.entries(languagesTotal).sort((a, b) => b[1] - a[1]);
 	};
 
@@ -101,8 +80,8 @@
 	});
 
 	// uitcommenten als ik niet meer geblokkeerd ben :(
-	// loading.set(true);
-	// $: $user, displayData();
+	loading.set(true);
+	$: $user, displayData();
 </script>
 
 <main bind:this={mainElement}>
