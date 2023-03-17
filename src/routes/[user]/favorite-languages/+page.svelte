@@ -4,7 +4,9 @@
 	import { onMount } from 'svelte';
 
 	let mainElement: HTMLElement;
-	let languagesSorted: [string, number][] = [];
+	// let languagesSorted: [string, number][] = [];
+
+	let test: any = {};
 
 	const fetchRepos = async () => {
 		const repos: Repo[] = await (
@@ -13,8 +15,18 @@
 		return repos;
 	};
 
+	const fetchLanguageColors = async () => {
+		const languageColors: LanguageColor = await (
+			await fetch(
+				`https://raw.githubusercontent.com/ozh/github-colors/master/colors.json`
+			)
+		).json();
+		return languageColors;
+	};
+
 	const fetchLanguages = async () => {
 		const repos = await fetchRepos();
+		const languageColors = await fetchLanguageColors();
 
 		const languagesTotal: Language = {};
 
@@ -33,12 +45,21 @@
 			}
 		}
 
-		return Object.entries(languagesTotal).sort((a, b) => b[1] - a[1]);
+		const fullDetails: any = {};
+		for (const language in languagesTotal) {
+			fullDetails[language] = {
+				amount: languagesTotal[language],
+				color: languageColors[language] ? languageColors[language].color : '#fff'
+			};
+		}
+
+		return fullDetails;
 	};
 
 	const displayData = async () => {
 		if (!$user) return;
-		languagesSorted = await fetchLanguages();
+		test = await fetchLanguages();
+		// languagesSorted = await fetchLanguages();
 		loading.set(false);
 	};
 
@@ -65,18 +86,10 @@
 	}
 
 	onMount(() => {
-		// mainElement.scrollTop = 0;
+		mainElement.scrollTop = 0;
 		setTimeout(() => {
 			scrollToBottom(mainElement.scrollHeight, 5000);
-		}, 2000);
-		// scrollToBottom(mainElement.scrollHeight, 5000);
-		// setTimeout(() => {
-		// 	mainElement.scrollTo({
-		// 		top: mainElement.scrollHeight,
-		// 		left: 0,
-		// 		behavior: 'smooth'
-		// 	});
-		// }, 1000);
+		}, 500);
 	});
 
 	// uitcommenten als ik niet meer geblokkeerd ben :(
@@ -85,14 +98,24 @@
 </script>
 
 <main bind:this={mainElement}>
-	<h1>Your Favorite Languages</h1>
+	<h1>{$user ? $user.login + '\'s' : 'Your'} Favorite Languages</h1>
 	<ul>
-		{#each languagesSorted as [language, amount]}
+		<!-- {#each languagesSorted as [language, amount]}
 			<li>
 				{#if amount > 100000}
 					<span>{language}</span>
 				{/if}
-				<div style="height:{amount / 10}px" />
+				<div style="height:{amount / 50}px" />
+				<span>{language}</span>
+			</li>
+		{/each} -->
+
+		{#each Object.entries(test) as [language]}
+			<li>
+				{#if test[language].amount > 10000}
+					<span>{language}</span>
+				{/if}
+				<div style="height:{test[language].amount / 50}px; background-color:{test[language].color};" />
 				<span>{language}</span>
 			</li>
 		{/each}
@@ -102,17 +125,19 @@
 <style>
 	main {
 		height: calc(100vh - 5em);
-		background: teal;
 		display: grid;
 		grid-template-rows: min-content 1fr;
 		overflow-y: auto;
+	}
+
+	main h1 {
+		text-align: center;
 	}
 
 	main ul {
 		display: flex;
 		justify-content: center;
 		align-items: end;
-		border: solid 2px red;
 		gap: 2em;
 	}
 
@@ -124,6 +149,7 @@
 
 	main ul li div {
 		width: 3em;
-		background: red;
+		background-color: var(--secondary-bg);
+		border: solid 1px var(--primary-text);
 	}
 </style>
