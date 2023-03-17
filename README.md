@@ -1,38 +1,26 @@
-# create-svelte
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+# Githubinator
 
-## Creating a project
+<table align="center"><thead><tr>
+	<td><a href="#installation">📚 Installation</a></td>
+	<td><a href="#license">⚖ License</a></td>
+</tr></thead></table>
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Installation
+1. Clone de repository via de terminal
+```$ git clone git@github.com:Laurens256/web-app-from-scratch-2223.git```
+2. Navigeer naar de gedownloade folder
+```$ cd FOLDER-NAME/web-app-from-scratch-2223/pokedex```
+3. Installeer de nodige (dev)dependencies
+```$ npm install```
+4. Start de web-app
+```$ npm run dev```
+5. Open de web-app in je browser
+```http://localhost:3000/```
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
