@@ -12,9 +12,9 @@
 
 ## Installation
 1. Clone de repository via de terminal
-```$ git clone git@github.com:Laurens256/web-app-from-scratch-2223.git```
+```$ git clone git@github.com:Laurens256/githubinator.git```
 2. Navigeer naar de gedownloade folder
-```$ cd FOLDER-NAME/web-app-from-scratch-2223/pokedex```
+```$ cd FOLDER-NAME/githubinator```
 3. Installeer de nodige (dev)dependencies
 ```$ npm install```
 4. Start de web-app
